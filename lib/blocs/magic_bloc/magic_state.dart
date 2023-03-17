@@ -1,8 +1,8 @@
 part of 'magic_bloc.dart';
 
 class MagicState {
-  final List<Card> magicData;
-  final Card? cardSelected;
+  final List<MagicCard> magicData;
+  final MagicCard? cardSelected;
   final int countPage;
   final ComState stateData;
 
@@ -20,8 +20,8 @@ class MagicState {
   });
 
   MagicState copyWith({
-    List<Card>? magicData,
-    Card? cardSelected,
+    List<MagicCard>? magicData,
+    MagicCard? cardSelected,
     int? countPage,
     ComState? stateData,
   }) {

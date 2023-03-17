@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:magic_test/blocs/magic_bloc/magic_bloc.dart';
-import 'package:magic_test/screens/list_page.dart';
+import 'package:magic_test/routes/app_navigator_states.dart';
 
 class FormPage extends StatelessWidget {
   const FormPage({super.key});
@@ -32,8 +32,7 @@ class FormPage extends StatelessWidget {
       floatingActionButton: InkWell(
         onTap: () {
           BlocProvider.of<MagicBloc>(context).add(MagicLoadData());
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ListPage()));
+          BlocProvider.of<AppNavigatorController>(context).showList();
         },
         child: const CircleAvatar(
           radius: 40,

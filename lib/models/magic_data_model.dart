@@ -8,10 +8,11 @@ class MagicDataModel {
   });
 
   /// List of Magic Cards of type [Card]
-  List<Card> cards;
+  List<MagicCard> cards;
 
   /// [JSON] to [MagicDataModel]
   factory MagicDataModel.fromJson(Map<String, dynamic> json) => MagicDataModel(
-        cards: List<Card>.from(json["cards"].map((x) => Card.fromJson(x))),
+        cards: List<MagicCard>.from(
+            json["cards"].map((x) => MagicCard.fromJson(x))),
       );
 }

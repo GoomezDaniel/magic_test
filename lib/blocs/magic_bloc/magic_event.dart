@@ -8,7 +8,7 @@ class MagicLoadData extends MagicEvent {}
 /// Event to charge the card selected data
 class SelectCard extends MagicEvent {
   /// Card selected when tap
-  final Card card;
+  final MagicCard card;
 
   /// Main constructor
   SelectCard({required this.card});

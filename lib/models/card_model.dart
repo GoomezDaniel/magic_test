@@ -1,17 +1,12 @@
 /// The Magic Card Model
-class Card {
+class MagicCard {
   /// Main constructor
-  Card({
+  MagicCard({
     this.name,
     this.manaCost,
     this.cmc,
-    this.colors,
-    this.colorIdentity,
     this.type,
-    this.types,
-    this.subtypes,
     this.rarity,
-    this.setName,
     this.text,
     this.artist,
     this.number,
@@ -20,16 +15,11 @@ class Card {
     this.loyalty,
     this.multiverseid,
     this.imageUrl,
-    this.variations,
     this.foreignNames,
-    this.printings,
     this.originalText,
     this.originalType,
-    this.legalities,
     this.id,
     this.flavor,
-    this.rulings,
-    this.supertypes,
   });
 
   /// The card name. For split, double-faced and flip cards, just the name of one side of the card. Basically each ‘sub-card’ has its own record.
@@ -41,29 +31,11 @@ class Card {
   /// Converted mana cost. Always a number
   num? cmc;
 
-  /// The card colors. Usually this is derived from the casting cost, but some cards are special (like the back of dual sided cards and Ghostfire).
-  List<Color>? colors;
-
-  /// The card’s color identity, by color code. [Red], [Blue] becomes [R], [U]. A card’s color identity includes colors from the card’s rules text.
-  List<Color>? colorIdentity;
-
   /// The card type. This is the type you would see on the card if printed today. Note: The dash is a UTF8 ‘long dash’ as per the MTG rules
   String? type;
 
-  /// The supertypes of the card. These appear to the far left of the card type. Example values: [Basic], [Legendary], [Snow], [World], [Ongoing]
-  List<String>? supertypes;
-
-  /// The types of the card. These appear to the left of the dash in a card type. Example values: [Instant], [Sorcery], [Artifact], [Creature], [Enchantment], [Land], [Planeswalker]
-  List<Type>? types;
-
-  /// The subtypes of the card. These appear to the right of the dash in a card type. Usually each word is its own subtype. Example values: [Trap], [Arcane], [Equipment], [Aura], [Human], [Rat], [Squirrel]
-  List<String>? subtypes;
-
   /// The rarity of the card. Examples: Common, Uncommon, Rare, Mythic Rare, Special, Basic Land
   Rarity? rarity;
-
-  /// The set the card belongs to.
-  SetName? setName;
 
   /// The oracle text of the card. May contain mana symbols and other symbols.
   String? text;
@@ -89,14 +61,8 @@ class Card {
   /// The image url for a card. Only exists if the card has a multiverse id.
   String? imageUrl;
 
-  /// The list variations of card
-  List<String>? variations;
-
   /// Foreign language names for the card, if this card in this set was printed in another language. An array of objects, each object having ‘language’, ‘name’ and ‘multiverseid’ keys. Not available for all sets.
   List<ForeignName>? foreignNames;
-
-  /// The sets that this card was printed in, expressed as an array of set codes.
-  List<String>? printings;
 
   /// The original text on the card at the time it was printed. This field is not available for promo cards.
   String? originalText;
@@ -104,39 +70,19 @@ class Card {
   /// The original type on the card at the time it was printed. This field is not available for promo cards.
   String? originalType;
 
-  /// Which formats this card is legal, restricted or banned in. An array of objects, each object having ‘format’ and ‘legality’.
-  List<LegalityElement>? legalities;
-
   /// A unique id for this card. It is made up by doing an SHA1 hash of setCode + cardName + cardImageName
   String? id;
 
   /// The flavor text of the card.
   String? flavor;
 
-  /// The rulings for the card. An array of objects, each object having ‘date’ and ‘text’ keys.
-  List<Ruling>? rulings;
-
-  /// [JSON] to [Card]
-  factory Card.fromJson(Map<String, dynamic> json) => Card(
+  /// [JSON] to [MagicCard]
+  factory MagicCard.fromJson(Map<String, dynamic> json) => MagicCard(
         name: json["name"],
         manaCost: json["manaCost"],
         cmc: json["cmc"],
-        colors: json["colors"] == null
-            ? []
-            : List<Color>.from(json["colors"]!.map((x) => colorValues.map[x]!)),
-        colorIdentity: json["colorIdentity"] == null
-            ? []
-            : List<Color>.from(
-                json["colorIdentity"]!.map((x) => colorValues.map[x]!)),
         type: json["type"],
-        types: json["types"] == null
-            ? []
-            : List<Type>.from(json["types"]!.map((x) => typeValues.map[x]!)),
-        subtypes: json["subtypes"] == null
-            ? []
-            : List<String>.from(json["subtypes"]!.map((x) => x)),
         rarity: rarityValues.map[json["rarity"]]!,
-        setName: setNameValues.map[json["setName"]]!,
         text: json["text"],
         artist: json["artist"],
         number: json["number"],
@@ -145,37 +91,12 @@ class Card {
         loyalty: layoutValues.map[json["layout"]]!,
         multiverseid: json["multiverseid"],
         imageUrl: json["imageUrl"],
-        variations: json["variations"] == null
-            ? []
-            : List<String>.from(json["variations"]!.map((x) => x)),
-        foreignNames: json["foreignNames"] == null
-            ? []
-            : List<ForeignName>.from(
-                json["foreignNames"]!.map((x) => ForeignName.fromJson(x))),
-        printings: json["printings"] == null
-            ? []
-            : List<String>.from(json["printings"]!.map((x) => x)),
         originalText: json["originalText"],
         originalType: json["originalType"],
-        legalities: json["legalities"] == null
-            ? []
-            : List<LegalityElement>.from(
-                json["legalities"]!.map((x) => LegalityElement.fromJson(x))),
         id: json["id"],
         flavor: json["flavor"],
-        rulings: json["rulings"] == null
-            ? []
-            : List<Ruling>.from(
-                json["rulings"]!.map((x) => Ruling.fromJson(x))),
-        supertypes: json["supertypes"] == null
-            ? []
-            : List<String>.from(json["supertypes"]!.map((x) => x)),
       );
 }
-
-enum Color { W, U }
-
-final colorValues = EnumValues({"U": Color.U, "W": Color.W});
 
 class ForeignName {
   ForeignName({
@@ -317,10 +238,6 @@ class Ruling {
         text: json["text"],
       );
 }
-
-enum SetName { tenthedition }
-
-final setNameValues = EnumValues({"Tenth Edition": SetName.tenthedition});
 
 enum Type { creature, sorcery, enchantment, instant }
 
