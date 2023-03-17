@@ -8,38 +8,45 @@ class FormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Form(
-          child: Column(
-            children: [
-              /// Name
-              TextFormField(),
+    return BlocBuilder<MagicBloc, MagicState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: Center(
+            child: Form(
+              child: Column(
+                children: [
+                  /// Name
+                  TextFormField(),
 
-              /// Last name
-              TextFormField(),
+                  /// Last name
+                  TextFormField(),
 
-              /// Email
-              TextFormField(),
+                  /// Email
+                  TextFormField(),
 
-              /// Date
-              TextFormField(),
-            ],
+                  /// Date
+                  TextFormField(),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: InkWell(
-        onTap: () {
-          BlocProvider.of<MagicBloc>(context).add(MagicLoadData());
-          BlocProvider.of<AppNavigatorController>(context).showList();
-        },
-        child: const CircleAvatar(
-          radius: 40,
-          backgroundColor: Colors.red,
-          child: Text('Go'),
-        ),
-      ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: InkWell(
+            onTap: () {
+              if (state.magicData.isEmpty) {
+                context.read<MagicBloc>().add(MagicLoadData());
+              }
+              context.read<AppNavigatorController>().showList();
+            },
+            child: const CircleAvatar(
+              radius: 40,
+              backgroundColor: Colors.red,
+              child: Text('Go'),
+            ),
+          ),
+        );
+      },
     );
   }
 }
