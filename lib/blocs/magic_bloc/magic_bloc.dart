@@ -15,15 +15,15 @@ class MagicBloc extends Bloc<MagicEvent, MagicState> {
       final data = await provider.loadCardData(state.countPage);
 
       /// Update the bloc state data
-      state.copyWith(
+      emit(state.copyWith(
         magicData: state.magicData..addAll(data.cards),
         countPage: state.countPage + 1,
-      );
+      ));
     });
 
     on<SelectCard>((event, emit) {
       /// Update the bloc state data
-      state.copyWith(cardSelected: event.card);
+      emit(state.copyWith(cardSelected: event.card));
     });
   }
 }
