@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:magic_test/widgets/type_and_mana_data.dart';
 
 import '/blocs/magic_bloc/magic_bloc.dart';
 
@@ -48,47 +49,7 @@ class ItemListContainer extends StatelessWidget {
                 card.name!,
                 style: MyStyles.title,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (card.type != null) ...[
-                    Flexible(
-                      child: RichText(
-                        overflow: TextOverflow.ellipsis,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Type: ',
-                              style: MyStyles.title,
-                            ),
-                            TextSpan(
-                              text: card.type,
-                              style: MyStyles.subtitle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                  if (card.manaCost != null) ...[
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'MC: ',
-                            style: MyStyles.title,
-                          ),
-                          TextSpan(
-                            text: card.manaCost,
-                            style: MyStyles.subtitle,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ],
-              ),
+              TypeAndMcData(card: card),
             ],
           ),
         ),

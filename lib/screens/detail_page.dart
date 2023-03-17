@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:magic_test/utils/design/my_styles.dart';
+import 'package:magic_test/widgets/type_and_mana_data.dart';
 import 'package:sizer/sizer.dart';
 
 import '../blocs/magic_bloc/magic_bloc.dart';
@@ -38,48 +39,7 @@ class DetailPage extends StatelessWidget {
                               const SizedBox(height: 10),
                               Text(card.text!, style: MyStyles.subtitle),
                               const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  if (card.type != null) ...[
-                                    Flexible(
-                                      child: RichText(
-                                        overflow: TextOverflow.ellipsis,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: 'Type: ',
-                                              style: MyStyles.title,
-                                            ),
-                                            TextSpan(
-                                              text: card.type,
-                                              style: MyStyles.subtitle,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                  if (card.manaCost != null) ...[
-                                    RichText(
-                                      overflow: TextOverflow.ellipsis,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'MC: ',
-                                            style: MyStyles.title,
-                                          ),
-                                          TextSpan(
-                                            text: card.manaCost,
-                                            style: MyStyles.subtitle,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ],
-                              ),
+                              TypeAndMcData(card: card),
                             ],
                           ),
                         )
@@ -101,47 +61,7 @@ class DetailPage extends StatelessWidget {
                       const SizedBox(height: 10),
                       Text(card.text!, style: MyStyles.subtitle),
                       const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          if (card.type != null) ...[
-                            Flexible(
-                              child: RichText(
-                                overflow: TextOverflow.ellipsis,
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Type: ',
-                                      style: MyStyles.title,
-                                    ),
-                                    TextSpan(
-                                      text: card.type,
-                                      style: MyStyles.subtitle,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                          if (card.manaCost != null) ...[
-                            RichText(
-                              overflow: TextOverflow.ellipsis,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'MC: ',
-                                    style: MyStyles.title,
-                                  ),
-                                  TextSpan(
-                                    text: card.manaCost,
-                                    style: MyStyles.subtitle,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
+                      TypeAndMcData(card: card),
                     ],
                   ),
                 );
