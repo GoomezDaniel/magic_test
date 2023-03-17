@@ -2,86 +2,86 @@
 class Card {
   /// Main constructor
   Card({
-    required this.name,
+    this.name,
     this.manaCost,
-    required this.cmc,
-    required this.colors,
-    required this.colorIdentity,
-    required this.type,
-    required this.types,
-    required this.subtypes,
-    required this.rarity,
-    required this.setName,
-    required this.text,
-    required this.artist,
-    required this.number,
-    required this.power,
-    required this.toughness,
-    required this.loyalty,
+    this.cmc,
+    this.colors,
+    this.colorIdentity,
+    this.type,
+    this.types,
+    this.subtypes,
+    this.rarity,
+    this.setName,
+    this.text,
+    this.artist,
+    this.number,
+    this.power,
+    this.toughness,
+    this.loyalty,
     this.multiverseid,
     this.imageUrl,
-    required this.variations,
-    required this.foreignNames,
+    this.variations,
+    this.foreignNames,
     this.printings,
     this.originalText,
     this.originalType,
-    required this.legalities,
+    this.legalities,
     this.id,
-    required this.flavor,
+    this.flavor,
     this.rulings,
-    required this.supertypes,
+    this.supertypes,
   });
 
   /// The card name. For split, double-faced and flip cards, just the name of one side of the card. Basically each ‘sub-card’ has its own record.
-  String name;
+  String? name;
 
   /// The card layout. Possible values: normal, split, flip, double-faced, token, plane, scheme, phenomenon, leveler, vanguard, aftermath
   String? manaCost;
 
   /// Converted mana cost. Always a number
-  int cmc;
+  num? cmc;
 
   /// The card colors. Usually this is derived from the casting cost, but some cards are special (like the back of dual sided cards and Ghostfire).
-  List<Color> colors;
+  List<Color>? colors;
 
   /// The card’s color identity, by color code. [Red], [Blue] becomes [R], [U]. A card’s color identity includes colors from the card’s rules text.
-  List<Color> colorIdentity;
+  List<Color>? colorIdentity;
 
   /// The card type. This is the type you would see on the card if printed today. Note: The dash is a UTF8 ‘long dash’ as per the MTG rules
-  String type;
+  String? type;
 
   /// The supertypes of the card. These appear to the far left of the card type. Example values: [Basic], [Legendary], [Snow], [World], [Ongoing]
-  List<String> supertypes;
+  List<String>? supertypes;
 
   /// The types of the card. These appear to the left of the dash in a card type. Example values: [Instant], [Sorcery], [Artifact], [Creature], [Enchantment], [Land], [Planeswalker]
-  List<Type> types;
+  List<Type>? types;
 
   /// The subtypes of the card. These appear to the right of the dash in a card type. Usually each word is its own subtype. Example values: [Trap], [Arcane], [Equipment], [Aura], [Human], [Rat], [Squirrel]
-  List<String> subtypes;
+  List<String>? subtypes;
 
   /// The rarity of the card. Examples: Common, Uncommon, Rare, Mythic Rare, Special, Basic Land
-  Rarity rarity;
+  Rarity? rarity;
 
   /// The set the card belongs to.
-  SetName setName;
+  SetName? setName;
 
   /// The oracle text of the card. May contain mana symbols and other symbols.
-  String text;
+  String? text;
 
   /// The artist of the card. This may not match what is on the card as MTGJSON corrects many card misprints.
-  String artist;
+  String? artist;
 
   /// The card number. This is printed at the bottom-center of the card in small text. This is a string, not an integer, because some cards have letters in their numbers.
-  String number;
+  String? number;
 
   /// The power of the card. This is only present for creatures. This is a string, not an integer, because some cards have powers like: “1+*”
-  String power;
+  String? power;
 
   /// The toughness of the card. This is only present for creatures. This is a string, not an integer, because some cards have toughness like: “1+*”
-  String toughness;
+  String? toughness;
 
   /// The loyalty of the card. This is only present for planeswalkers.
-  Loyalty loyalty;
+  Loyalty? loyalty;
 
   /// The multiverseid of the card on Wizard’s Gatherer web page. Cards from sets that do not exist on Gatherer will NOT have a multiverseid. Sets not on Gatherer are: ATH, ITP, DKM, RQS, DPA and all sets with a 4 letter code that starts with a lowercase ‘p’.
   String? multiverseid;
@@ -90,10 +90,10 @@ class Card {
   String? imageUrl;
 
   /// The list variations of card
-  List<String> variations;
+  List<String>? variations;
 
   /// Foreign language names for the card, if this card in this set was printed in another language. An array of objects, each object having ‘language’, ‘name’ and ‘multiverseid’ keys. Not available for all sets.
-  List<ForeignName> foreignNames;
+  List<ForeignName>? foreignNames;
 
   /// The sets that this card was printed in, expressed as an array of set codes.
   List<String>? printings;
@@ -105,13 +105,13 @@ class Card {
   String? originalType;
 
   /// Which formats this card is legal, restricted or banned in. An array of objects, each object having ‘format’ and ‘legality’.
-  List<LegalityElement> legalities;
+  List<LegalityElement>? legalities;
 
   /// A unique id for this card. It is made up by doing an SHA1 hash of setCode + cardName + cardImageName
   String? id;
 
   /// The flavor text of the card.
-  String flavor;
+  String? flavor;
 
   /// The rulings for the card. An array of objects, each object having ‘date’ and ‘text’ keys.
   List<Ruling>? rulings;
