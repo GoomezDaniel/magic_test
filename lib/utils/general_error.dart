@@ -1,10 +1,5 @@
-import '../intl/app_localizations_delegate.dart';
-
 /// General error for app
-abstract class GeneralError implements Exception {
-  /// Returns message to show user
-  String? getUserMessage(AppLocalizationsData localizationsData) => null;
-}
+abstract class GeneralError implements Exception {}
 
 /// Unknown error
 class GeneralUnknownError extends GeneralError with UnknownError {
@@ -19,11 +14,6 @@ class GeneralUnknownError extends GeneralError with UnknownError {
     this.error,
     this.stackTrace,
   );
-
-  @override
-  String? getUserMessage(AppLocalizationsData localizationsData) {
-    return localizationsData.unknownError;
-  }
 }
 
 /// Unknown error
