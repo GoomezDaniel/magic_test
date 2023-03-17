@@ -12,7 +12,15 @@ class DetailPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: Center(
-            child: Text(state.cardSelected!.name!),
+            child: Column(
+              children: [
+                if (state.cardSelected!.imageUrl!.isNotEmpty) ...[
+                  Image.network(state.cardSelected!.imageUrl!),
+                ],
+                Text(state.cardSelected!.name!),
+                Text(state.cardSelected!.text!),
+              ],
+            ),
           ),
         );
       },

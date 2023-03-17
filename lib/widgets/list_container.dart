@@ -51,17 +51,21 @@ class ItemListContainer extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(
-                    child: Text(
-                      'Type: ${card.type!}',
-                      style: MyStyles.pequenia,
-                      overflow: TextOverflow.ellipsis,
+                  if (card.type != null) ...[
+                    Flexible(
+                      child: Text(
+                        'Type: ${card.type}',
+                        style: MyStyles.pequenia,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'MC: ${card.manaCost!}',
-                    style: MyStyles.pequenia,
-                  ),
+                  ],
+                  if (card.manaCost != null) ...[
+                    Text(
+                      'MC: ${card.manaCost}',
+                      style: MyStyles.pequenia,
+                    ),
+                  ],
                 ],
               ),
             ],

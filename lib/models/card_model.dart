@@ -15,7 +15,6 @@ class MagicCard {
     this.loyalty,
     this.multiverseid,
     this.imageUrl,
-    this.foreignNames,
     this.originalText,
     this.originalType,
     this.id,
@@ -61,9 +60,6 @@ class MagicCard {
   /// The image url for a card. Only exists if the card has a multiverse id.
   String? imageUrl;
 
-  /// Foreign language names for the card, if this card in this set was printed in another language. An array of objects, each object having ‘language’, ‘name’ and ‘multiverseid’ keys. Not available for all sets.
-  List<ForeignName>? foreignNames;
-
   /// The original text on the card at the time it was printed. This field is not available for promo cards.
   String? originalText;
 
@@ -97,59 +93,6 @@ class MagicCard {
         flavor: json["flavor"],
       );
 }
-
-class ForeignName {
-  ForeignName({
-    this.name,
-    this.text,
-    this.type,
-    this.flavor,
-    this.imageUrl,
-    this.language,
-    this.multiverseid,
-  });
-
-  String? name;
-  String? text;
-  String? type;
-  String? flavor;
-  String? imageUrl;
-  Language? language;
-  int? multiverseid;
-
-  /// [JSON] to [ForeignName]
-  factory ForeignName.fromJson(Map<String, dynamic> json) => ForeignName(
-        name: json["name"],
-        text: json["text"],
-        type: json["type"],
-        flavor: json["flavor"],
-        imageUrl: json["imageUrl"],
-        language: languageValues.map[json["language"]]!,
-        multiverseid: json["multiverseid"],
-      );
-}
-
-enum Language {
-  german,
-  spanish,
-  french,
-  italian,
-  japanese,
-  portuguese,
-  russina,
-  chinese
-}
-
-final languageValues = EnumValues({
-  "Chinese Simplified": Language.chinese,
-  "French": Language.french,
-  "German": Language.german,
-  "Italian": Language.italian,
-  "Japanese": Language.japanese,
-  "Portuguese (Brazil)": Language.portuguese,
-  "Russian": Language.russina,
-  "Spanish": Language.spanish
-});
 
 enum Loyalty { normal }
 

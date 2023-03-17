@@ -35,9 +35,7 @@ class MyApp extends StatelessWidget {
             create: (context) => AppNavigatorController(),
           ),
         ],
-        child: Builder(builder: (context) {
-          return const AppNavigator();
-        }),
+        child: const AppNavigator(),
       ),
       debugShowCheckedModeBanner: false,
     );
