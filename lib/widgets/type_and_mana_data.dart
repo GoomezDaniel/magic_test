@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/card_model.dart';
 import '../utils/design/my_styles.dart';
 
+/// Special widget to show the type and mana cost data
 class TypeAndMcData extends StatelessWidget {
   const TypeAndMcData({
     super.key,

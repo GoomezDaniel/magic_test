@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../blocs/magic_bloc/magic_bloc.dart';
 import '../widgets/list_container.dart';
+import '../widgets/reload_data_button.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({super.key});
@@ -14,7 +16,18 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage> {
   @override
+  void initState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    /// Scroll controller value by [ListView]
     final ScrollController controller = ScrollController();
 
     return BlocConsumer<MagicBloc, MagicState>(
@@ -34,6 +47,10 @@ class _ListPageState extends State<ListPage> {
       },
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            title: const Text('Magic List'),
+            centerTitle: true,
+          ),
           body: SafeArea(
             child: Stack(
               fit: StackFit.expand,
@@ -55,10 +72,14 @@ class _ListPageState extends State<ListPage> {
                   const Center(
                     child: CircularProgressIndicator(),
                   )
-                ]
+                ],
               ],
             ),
           ),
+          floatingActionButton:
+              state.stateData.hasError ? const ReloadDataButton() : null,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
         );
       },
     );

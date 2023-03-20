@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 
 /// Class to controll the pages
 class AppNavigatorState {
-  /// Actual page
+  /// Current page
   final AppNavigatorPage page;
 
   /// Main constructor
@@ -11,13 +11,13 @@ class AppNavigatorState {
 
 /// Pages in navigator
 enum AppNavigatorPage {
-  /// form
+  /// form page
   form,
 
-  /// list
+  /// list page
   list,
 
-  /// detail
+  /// detail page
   detail,
 }
 
@@ -27,12 +27,12 @@ class AppNavigatorController extends Cubit<AppNavigatorState> {
   AppNavigatorController()
       : super(const AppNavigatorState(AppNavigatorPage.form));
 
-  /// Show form
+  /// Show form page
   void showForm() => emit(const AppNavigatorState(AppNavigatorPage.form));
 
-  /// Show list
+  /// Show list page
   void showList() => emit(const AppNavigatorState(AppNavigatorPage.list));
 
-  /// Show detail
+  /// Show detail page
   void showDetail() => emit(const AppNavigatorState(AppNavigatorPage.detail));
 }

@@ -22,15 +22,10 @@ class ComState {
       : status = ComStatus.endSuccess,
         _error = null;
 
-  /// Constructor for error state by [error]
-  ComState.error(GeneralError error)
-      : status = ComStatus.error,
-        _error = error;
-
   /// Constructor for error state for unknown error, by [e] and [s]
-  ComState.unknownError(Object e, StackTrace s)
+  ComState.error(Object e, StackTrace s)
       : status = ComStatus.error,
-        _error = GeneralUnknownError(e, s);
+        _error = GeneralError(e, s);
 
   /// Returns the error
   GeneralError? get error {

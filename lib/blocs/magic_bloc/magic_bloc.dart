@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:magic_test/models/card_model.dart';
@@ -23,6 +24,8 @@ class MagicBloc extends Bloc<MagicEvent, MagicState> {
           /// Get the petition provider data
           final response = await provider.loadCardData(state.countPage);
 
+          log(response.body);
+
           /// Prse the data
           final data = MagicDataModel.fromJson(jsonDecode(response.body));
 
@@ -34,7 +37,7 @@ class MagicBloc extends Bloc<MagicEvent, MagicState> {
           ));
         }
       } catch (e, s) {
-        emit(state.copyWith(stateData: ComState.unknownError(e, s)));
+        emit(state.copyWith(stateData: ComState.error(e, s)));
       }
     });
 

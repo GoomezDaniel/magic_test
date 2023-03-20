@@ -10,7 +10,9 @@ import '/models/card_model.dart';
 
 import '/utils/design/my_styles.dart';
 
+/// Special widget to show the cards item by list
 class ItemListContainer extends StatelessWidget {
+  /// Main constructor
   const ItemListContainer({
     super.key,
     required this.card,
